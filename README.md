@@ -51,6 +51,13 @@ To make a new controller:
 bun make:controller UserController
 ```
 
+To make a compiled file:
+Note: .env must be set first before compiling
+
+```sh
+bun compile Hono
+```
+
 ## Folder Structure
 
 ```sh
