@@ -1,0 +1,20 @@
+{
+    "connections": {
+        "newclon6634491c805dd": {
+            "client": "mysql",
+            "host": "127.0.0.1",
+            "database": "newclone",
+            "user": "root",
+            "password": "",
+            "port": "3306"
+        },
+        "nwclone6634491c8234f": {
+            "client": "mysql",
+            "host": "127.0.0.1",
+            "database": "nwclone",
+            "user": "root",
+            "password": "",
+            "port": "3306"
+        }
+    }
+}
