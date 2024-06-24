@@ -1,23 +1,32 @@
+import BaseRequest from "./BaseRequest"
 import vine from "@vinejs/vine"
 import { Context } from "hono"
-import { validator } from "hono/validator"
 
-export default class UserRequest {
+interface get {
+    username: string
+    email: string
+}
+interface post { }
+
+export default class UserRequest extends BaseRequest {
+    // Add validation rules
     static schema = {
         get: vine.object({
             username: vine.string().minLength(3),
             email: vine.string().email()
-        })
+        }),
+        post: vine.object({
+            // Post validation rules
+        }),
     }
 
+    // Parse request data
     static parse = {
-        get: (data: any, c: Context | null = null) => {
-            const validator = vine.compile(this.schema.get)
-            return validator.validate(data)
+        get: async (c: Context): Promise<get> => {
+            return await this.validate(c, this.schema.get)
+        },
+        post: async (c: Context): Promise<post> => {
+            return await this.validate(c, this.schema.post)
         }
-    }
-
-    static validate = {
-        get: validator('query', (data: any, c: Context | null = null) => this.parse.get(data, c))
     }
 }

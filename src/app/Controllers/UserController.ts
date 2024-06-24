@@ -7,7 +7,7 @@ import { UserResource } from "../Resources";
 
 export default class UserController {
     static async index(c: Context) {
-        // const input = await UserRequest.parse.get(c.req.query())
+        // const input = await UserRequest.parse.get(c)
         const users = await User.query().select('*')
 
         const data = UserResource.collection(users)
