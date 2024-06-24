@@ -33,6 +33,9 @@ export default function AuthMiddleware() {
 
             const decoded: JwtVerifyInterface = await verify(bearerToken, strPrivateKey, 'RS256') as JwtVerifyInterface;
             // console.log(decoded);
+
+            // Check JTI is revoked or not
+
             // const uid: number = decoded.uid || 0;
             // const employee = await Employee.findBy('uid', uid);
             // console.log(employee);

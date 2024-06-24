@@ -6,6 +6,12 @@ import validationRules from "../lang/validation";
 
 const ErrorHandler = (err: any, c: Context) => {
     const localization = c.req.header('x-localization') || 'en';
+
+    // Handle syntax errors
+    if (err instanceof SyntaxError) {
+        return c.json({ message: err.message, title: err.name }, 400);
+    }
+
     // Handle HTTP exceptions
     if (err instanceof HTTPException) {
         // Handle Invalid HTTP headers
@@ -50,7 +56,7 @@ const ErrorHandler = (err: any, c: Context) => {
             }
         })
         // Handle validation errors
-        return c.json({ message: t('The given data was invalid'), errors: parseErrors }, 422);
+        return c.json({ message: t('The given data was invalid', {}, localization), errors: parseErrors }, 422);
     }
 
     console.error('Error handler', err)

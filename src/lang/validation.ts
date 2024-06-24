@@ -1,5 +1,5 @@
 const validationRules: { [key: string]: string } = {
-  'required': 'The :field field must be defined',
+  'required': 'The :field field is required',
 
   'string': 'The :field field must be a string',
   'email': 'The :field field must be a valid email address',

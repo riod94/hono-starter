@@ -1,4 +1,4 @@
-import { BaseResource } from "./BaseReource";
+import BaseResource from "./BaseReource";
 
 interface UserResourceInterface {
     id: number;

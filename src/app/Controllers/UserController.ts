@@ -11,7 +11,7 @@ export default class UserController {
         const users = await User.query().select('*')
 
         const data = UserResource.collection(users)
-        const single = UserResource.transform(users[0])
+        const single = UserResource.transform(users.shift())
         // const data = [];
 
         // for (const user of users) {

@@ -116,16 +116,18 @@ export default class ${name} extends Model {
 
     // Declare columns in the table.
     declare id: number;
-    declare name: string;
     
     // Relations can be defined here. refer to https://vincit.github.io/objection.js/guide/relations.html#examples
 
 }`,
-    request: (name: string) => `import vine from "@vinejs/vine"
+    request: (name: string) => `import BaseRequest from "./BaseRequest"
+import vine from "@vinejs/vine"
 import { Context } from "hono"
-import { validator } from "hono/validator"
 
-export default class ${name} {
+interface get {}
+interface post {}
+
+export default class ${name} extends BaseRequest {
     // Add validation rules
     static schema = {
         get: vine.object({
@@ -138,24 +140,15 @@ export default class ${name} {
 
     // Parse request data
     static parse = {
-        get: (data: any, c: Context | null = null) => {
-            const validator = vine.compile(this.schema.get)
-            return validator.validate(data)
+        get: async (c: Context): Promise<get> => {
+            return await this.validate(c, this.schema.get)
         },
-        post: (data: any, c: Context | null = null) => {
-            const validator = vine.compile(this.schema.post)
-            return validator.validate(data)
+        post: async (c: Context): Promise<post> => {
+            return await this.validate(c, this.schema.post)
         }
     }
-
-    // Validate request data
-    // validator types : cookie, header, query, param, form, json
-    static validate = {
-        get: validator('query', (data: any, c: Context | null = null) => this.parse.get(data, c)),
-        post: validator('json', (data: any, c: Context | null = null) => this.parse.post(data, c))
-    }
 }`,
-    resource: (name: string) => `import { BaseResource } from "./BaseReource";
+    resource: (name: string) => `import BaseResource from "./BaseReource";
 
 interface ${name}Interface {
     id: number;

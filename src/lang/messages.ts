@@ -3,6 +3,7 @@ const messages: { [key: string]: { [key: string]: string } } = {
     id: {
         // Start of validation
         'The :field field is required': ':field wajib diisi',
+        'The :field field must be defined': ':field harus terdefinisi',
         'The :field field must be a string': ':field harus berupa teks',
         'The :field field must be a valid email address': ':field harus berupa alamat email yang valid',
         'The :field field must be a valid mobile phone number': ':field harus berupa nomor telepon yang valid',

@@ -1,4 +1,5 @@
-export class BaseResource {
+// Don't Move or Delete this file
+export default class BaseResource {
     static collection(data: any[]): any[] {
         return data.map((item) => this.transform(item));
     }
