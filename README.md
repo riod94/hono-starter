@@ -21,6 +21,8 @@ Then copy `.env.example` to `.env`
 cp .env.example .env
 ```
 
+Note: You need to copy oauth-private.key and oauth-public.key to `src/storage`, this is used to sign and verify JWT.
+
 To run:
 
 ```sh
@@ -48,14 +50,14 @@ make:resource       Create a new resource
 To make a new controller:
 
 ```sh
-bun make:controller UserController
+bun shin make:controller UserController
 ```
 
 To make a compiled file:
-Note: .env must be set first before compiling
+Note: .env must be set first before compiling, if any change in `src/` you will need to run `bun compile` again 
 
 ```sh
-bun compile Hono
+bun compile AppName
 ```
 
 ## Folder Structure
